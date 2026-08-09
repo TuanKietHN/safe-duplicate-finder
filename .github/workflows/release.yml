@@ -1,0 +1,65 @@
+name: publish-release
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+permissions:
+  contents: write
+
+jobs:
+  windows-installer:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.97.1
+          components: rustfmt, clippy
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.18.0
+          cache: npm
+          cache-dependency-path: apps/desktop/package-lock.json
+      - run: npm ci
+        working-directory: apps/desktop
+      - name: Dựng và kiểm tra bộ cài Windows
+        shell: pwsh
+        run: .\installer\windows\build-online-installer.ps1
+      - name: Xác minh phiên bản và asset
+        shell: pwsh
+        run: |
+          $releaseVersion = $env:GITHUB_REF_NAME.TrimStart('v')
+          $tauriConfig = Get-Content 'apps/desktop/src-tauri/tauri.conf.json' -Raw | ConvertFrom-Json
+          $runtimeManifest = Get-Content 'installer/runtime-manifest.json' -Raw | ConvertFrom-Json
+          if ($tauriConfig.version -ne $releaseVersion) {
+            throw "Phiên bản Tauri $($tauriConfig.version) không khớp tag $releaseVersion"
+          }
+          if ($runtimeManifest.release_version -ne $releaseVersion) {
+            throw "Phiên bản manifest $($runtimeManifest.release_version) không khớp tag $releaseVersion"
+          }
+          $installer = "target/release/online-installer/safe-dedupe-setup-$releaseVersion-x64.exe"
+          if (-not (Test-Path -LiteralPath $installer -PathType Leaf)) {
+            throw "Không tìm thấy bộ cài: $installer"
+          }
+          if (-not (Test-Path -LiteralPath 'target/release/online-installer/release-checksums.json' -PathType Leaf)) {
+            throw 'Không tìm thấy release-checksums.json'
+          }
+          if (-not (Test-Path -LiteralPath "docs/releases/$releaseVersion.md" -PathType Leaf)) {
+            throw "Không tìm thấy ghi chú phát hành docs/releases/$releaseVersion.md"
+          }
+      - name: Tạo GitHub Release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $releaseVersion = $env:GITHUB_REF_NAME.TrimStart('v')
+          gh release create $env:GITHUB_REF_NAME `
+            "target/release/online-installer/safe-dedupe-setup-$releaseVersion-x64.exe" `
+            'target/release/online-installer/release-checksums.json' `
+            --repo $env:GITHUB_REPOSITORY `
+            --title "Trình tìm tệp trùng lặp an toàn $releaseVersion" `
+            --notes-file "docs/releases/$releaseVersion.md" `
+            --verify-tag `
+            --latest
