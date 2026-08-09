@@ -1,0 +1,20 @@
+# Giữ mã nguồn nhất quán giữa Windows, Linux và CI.
+* text=auto eol=lf
+
+# Các tập lệnh Windows cần xuống dòng CRLF khi checkout.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Không biến đổi nội dung tệp nhị phân.
+*.dll binary
+*.exe binary
+*.gif binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.pdf binary
+*.png binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.zip binary
