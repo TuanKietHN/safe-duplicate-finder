@@ -15,8 +15,15 @@
 **/.turbo/
 **/.cache/
 **/.parcel-cache/
+**/.pnpm-store/
+**/.yarn/cache/
+**/.yarn/unplugged/
+**/.yarn/install-state.gz
+**/.pnp.*
 *.tsbuildinfo
 .eslintcache
+.prettiercache
+.stylelintcache
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -68,6 +75,14 @@ lcov.info
 *.key
 *.p12
 *.pfx
+*.snk
+*.jks
+*.keystore
+*.mobileprovision
+/.cargo/credentials
+/.cargo/credentials.toml
+/.npmrc.local
+/.netrc
 
 # Cấu hình công cụ chỉ dành cho máy cá nhân
 /.codex/
@@ -87,6 +102,13 @@ lcov.info
 *.swp
 *.swo
 *~
+*.dmp
+*.stackdump
+*.profraw
+*.profdata
+perf.data
+perf.data.old
+flamegraph.svg
 
 # Hệ điều hành
 .DS_Store
