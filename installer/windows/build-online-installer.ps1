@@ -7,7 +7,7 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $desktopRoot = Join-Path $projectRoot 'apps\desktop'
 $outputRoot = Join-Path $projectRoot 'target\release\online-installer'
-$version = '0.2.0'
+$version = '0.2.1'
 
 function Invoke-Checked {
     param(
@@ -43,7 +43,12 @@ try {
         throw "Không tìm thấy helper Runtime: $helper"
     }
 
-    Invoke-Checked -Program 'npm' -Arguments @('--prefix', $desktopRoot, 'run', 'tauri', '--', 'build', '--bundles', 'nsis')
+    Invoke-Checked -Program 'npm' -Arguments @(
+        '--prefix', $desktopRoot,
+        'run', 'tauri', '--',
+        'build', '--bundles', 'nsis',
+        '--config', 'src-tauri/tauri.online-installer.conf.json'
+    )
 
     $bundleRoot = Join-Path $projectRoot 'target\release\bundle\nsis'
     $payload = Get-ChildItem -LiteralPath $bundleRoot -File |

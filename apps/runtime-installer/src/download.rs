@@ -215,7 +215,7 @@ fn hash_file(path: &Path) -> Result<String, DownloadError> {
         }
         hasher.update(&buffer[..count]);
     }
-    Ok(format!("{:X}", hasher.finalize()))
+    Ok(hex::encode_upper(hasher.finalize()))
 }
 
 fn remove_cache_file_if_present(path: &Path) -> Result<(), DownloadError> {

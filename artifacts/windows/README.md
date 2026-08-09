@@ -1,17 +1,17 @@
 # Bằng chứng bộ cài Windows
 
-## Online setup 0.2.0 — 2026-08-09
+## Online setup 0.2.1 — 2026-08-09
 
 | Trường | Giá trị |
 |---|---|
-| Tệp phát hành | `target/release/online-installer/safe-dedupe-setup-0.2.0-x64.exe` |
-| Kích thước | 3.434.960 byte (khoảng 3,28 MiB; đạt ngân sách dưới 15 MiB) |
-| SHA-256 setup | `6C736129B7C9074E093C71022B9F69A65D9E3158FBC3168C552CF951938F5606` |
-| Phiên bản sản phẩm | `0.2.0` |
+| Tệp phát hành | `target/release/online-installer/safe-dedupe-setup-0.2.1-x64.exe` |
+| Kích thước | 3.407.351 byte (khoảng 3,25 MiB; đạt ngân sách dưới 15 MiB) |
+| SHA-256 setup | `34E2075454543B6A51D3AA38A2A9FD3BCA69A3281D3911856979357098E32086` |
+| Phiên bản sản phẩm | `0.2.1` |
 | Authenticode | `NotSigned` |
-| Helper native | 567.808 byte; SHA-256 `874B296405A9956E36D7B0A39AED3C88C43DE55D9B353D46445D181B8AFE245D` |
-| Ứng dụng release | 9.688.064 byte; SHA-256 `D6B6A129EC7C0FEA23A50D354DDCE32F8FD6F06410F6C10B5BC7D9EDD3668E48` |
-| Manifest Runtime | SHA-256 `38E3EC36C1FB20769717F9280771136F37D2605B4F9D95F1F8A2B31EBEB3FBE0` |
+| Helper native | 566.784 byte; SHA-256 `408C41B46BCF777E6F9C09C28429A01DF81EA2298D7FF164C6BBDB32BE5BF49D` |
+| Ứng dụng release | 9.675.264 byte; SHA-256 `346F6FA86F760253D138EDC44E84B2711DB68F2788DBBDCB2F5D9E420506BC4E` |
+| Manifest Runtime | SHA-256 `0AED2E9C4CFBEA3794765178E1A1EE8AB733B303DA240F86931A630AA1C74300` |
 | Lệnh dựng | `.\installer\windows\build-online-installer.ps1` |
 
 Manifest ghim Microsoft Edge WebView2 Evergreen Standalone x64 dài 209.605.840 byte, SHA-256
@@ -22,7 +22,7 @@ chỉ phụ thuộc DLL hệ thống/UCRT API set và cần WebView2 ở thời 
 
 `release-checksums.json` được tạo cạnh EXE nhưng toàn bộ `target/` chủ đích bị Git bỏ qua. Hãy tải EXE
 và file bằng chứng lên GitHub Releases; không commit nhị phân vào kho mã. Bản này đã đạt kiểm tra tĩnh,
-118 test Rust, 15 test frontend, `cargo deny` và `npm audit` 0 lỗ hổng. Kiểm thử cài/gỡ trên máy sạch
+120 test Rust, 15 test frontend, `cargo deny` và `npm audit` 0 lỗ hổng. Kiểm thử cài/gỡ trên máy sạch
 độc lập và ký nhà phát hành vẫn là cổng phát hành công khai.
 
 ## Mốc bộ cài Windows 0.1.9 (lịch sử)

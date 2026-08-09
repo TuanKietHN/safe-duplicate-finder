@@ -11,7 +11,7 @@ fn artifact(bytes: &[u8]) -> RuntimeArtifact {
         architecture: "x64".into(),
         url: "https://example.invalid/runtime.exe".into(),
         size_bytes: u64::try_from(bytes.len()).expect("fixture size"),
-        sha256: format!("{:X}", Sha256::digest(bytes)),
+        sha256: hex::encode_upper(Sha256::digest(bytes)),
         cache_file_name: "fixture.exe".into(),
         install_args: vec!["/silent".into()],
         detection: DetectionRule::Webview2Registry {

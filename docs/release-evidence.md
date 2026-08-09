@@ -80,23 +80,28 @@
   Kế hoạch `c709deb6-d9de-4922-99cb-d6bfbf4d2d3c` vẫn khóa, không phát sinh giao dịch ngoài ý muốn;
   ứng dụng mở lại có phản hồi. Checksum nằm trong `artifacts/windows/README.md`.
 
-## Bằng chứng phát triển cục bộ 0.2.0 — 2026-08-09
+## Bằng chứng phát hành 0.2.1 — 2026-08-09
 
 - [x] Spec Kit đã cập nhật đặc tả, kế hoạch, mô hình dữ liệu, nghiên cứu, quickstart, hợp đồng Runtime
   và tác vụ cho kiến trúc một NSIS setup nhúng helper native.
 - [x] `cargo fmt --all -- --check` và
   `cargo clippy --workspace --all-targets --all-features -- -D warnings` đạt.
-- [x] `cargo test --workspace --all-targets --all-features` đạt đủ 118 test Rust, 0 lỗi; trong đó 28
+- [x] `cargo test --workspace --all-targets --all-features` đạt đủ 120 test Rust, 0 lỗi; trong đó 30
   test riêng của runtime installer kiểm tra manifest, byte thật/tốc độ/ETA, cache, preflight, 64 KiB,
   tối đa hai worker, fresh/resume/Range-200/retry, cắt kết nối, hủy, redirect downgrade, SHA-256, exit
   code và hợp đồng NSIS/uninstaller.
 - [x] ESLint, Prettier, TypeScript/Vite build và 15 test Vitest đạt.
 - [x] `cargo deny check -A warnings` đạt advisories/bans/licenses/sources; `npm audit --audit-level=high`
   báo 0 lỗ hổng sau khi cập nhật các dependency gián tiếp được vá.
+- [x] Rust giữ ở stable 1.97.1; CI dùng Node.js 24.18.0 LTS, `actions/checkout@v6` và
+  `actions/setup-node@v6`. Frontend đã nâng lên Vite 8.2.1, Vitest 4.1.10, ESLint 10.8.1 và
+  TypeScript 6.0.3; TypeScript 7 chưa được dùng vì `typescript-eslint` 8.66.0 chưa hỗ trợ.
+- [x] `rusqlite` đã nâng lên 0.40.2, `sha2` lên 0.11.0 và lockfile đã cập nhật toàn bộ gói tương
+  thích với Rust 1.97.1.
 - [x] `dumpbin /dependents` xác nhận app không nhập `VCRUNTIME140.dll`/`MSVCP140.dll`; helper CRT tĩnh
   chỉ nhập DLL Windows cần thiết như `winhttp.dll`, `comctl32.dll`, `user32.dll` và `advapi32.dll`.
-- [x] Online setup 0.2.0 build thành công, ProductVersion đúng, kích thước 3.434.960 byte dưới 15 MiB,
-  SHA-256 `6C736129B7C9074E093C71022B9F69A65D9E3158FBC3168C552CF951938F5606`. Hash helper,
+- [x] Online setup 0.2.1 build thành công, ProductVersion đúng, kích thước và SHA-256 được ghi trong
+  `artifacts/windows/README.md` cùng `release-checksums.json`. Hash helper,
   manifest và app nằm trong `artifacts/windows/README.md` và `release-checksums.json`.
 - [x] Kiểm thử fixture xác nhận tệp cache hoàn chỉnh hợp lệ không mở kết nối, `.part` được tiếp tục,
   response 200 khi resume chỉ khởi động lại mục đó, retry giữ phần đã nhận, dữ liệu sai/cắt ngắn không
@@ -104,11 +109,11 @@
 - [x] Kiểm thử tĩnh hook NSIS xác nhận helper lỗi làm setup `Abort`, shortcut gỡ cài đặt được tạo, cập
   nhật giữ dữ liệu app, còn gỡ rõ ràng chỉ xóa hai root sản phẩm cố định và không có lệnh xóa vùng
   `.safe-duplicate-finder-quarantine`.
+- [x] Docker build sạch bằng `rust:1.97.1-trixie` và `debian:trixie-slim` đạt. Smoke test chạy bằng
+  user không đặc quyền với `/scan` gắn chỉ đọc; lệnh `check` xác nhận SQLite đạt.
 
 ## Các bước thẩm định bên ngoài còn mở trước khi phát hành công khai
 
-- [ ] Kiểm thử nhanh môi trường Docker với người dùng không có đặc quyền root, điểm gắn chỉ đọc và
-  dịch vụ Docker đang hoạt động.
 - [ ] Cài/khởi chạy trên máy Windows sạch khi chưa có WebView2 và khi WebView2 đã hợp lệ; quan sát byte,
   tổng dung lượng, tốc độ, ETA, trạng thái tệp và tiến độ chung từ mạng thật.
 - [ ] Ngắt tiến trình/mạng giữa lần tải Runtime thật, chạy lại để chứng minh resume/no-redownload và

@@ -3,7 +3,7 @@
 Ứng dụng desktop ưu tiên an toàn để tìm, kiểm chứng, cách ly, khôi phục và xóa các tệp trùng lặp trên
 Windows 10/11. Mọi thao tác diễn ra cục bộ; nội dung tệp không được tải lên dịch vụ bên ngoài.
 
-Phiên bản phát triển hiện tại: **0.2.0**.
+Phiên bản phát hành hiện tại: **0.2.1**.
 
 > [!WARNING]
 > Đây là phần mềm có khả năng xóa dữ liệu. Hãy sao lưu dữ liệu quan trọng, xem kỹ tệp giữ lại và thử
@@ -60,7 +60,8 @@ Không xóa thủ công thư mục cách ly vì việc đó làm cơ sở dữ l
 
 - `target/` là cache biên dịch Rust, có thể lớn hàng chục GiB sau nhiều lần test/build và đã được
   `.gitignore` loại khỏi Git. Chạy `cargo clean` tại thư mục kho mã để thu hồi phần này; lần build kế
-  tiếp sẽ chậm hơn vì phải biên dịch lại.
+  tiếp sẽ chậm hơn vì phải biên dịch lại. Lưu ý `cargo clean` cũng xóa mọi EXE và checksum trong
+  `target/release/`; hãy tải chúng lên GitHub Releases hoặc sao chép ra ngoài kho mã trước khi dọn.
 - `apps/desktop/node_modules/` là dependency frontend có thể cài lại bằng `npm ci`.
 - Dữ liệu vận hành nằm trong `%LOCALAPPDATA%/io.github.safeduplicate.finder`. Trang **Lịch sử và dọn
   dẹp** chỉ bảo trì phạm vi này; không được phép đi vào thư mục nguồn, vùng cách ly hoặc kho mã.
@@ -78,7 +79,7 @@ Việc kiểm tra lại nhiều gigabyte có thể mất vài phút. Không đó
 - WebView2 Runtime.
 - Rust stable MSVC theo [rust-toolchain.toml](rust-toolchain.toml) (hiện là 1.97.1).
 - Visual Studio 2022 Build Tools với workload C++ Desktop.
-- Node.js 24 và npm 11.
+- Node.js 24.18.0 LTS và npm 11.
 
 ### Chuẩn bị
 
@@ -112,6 +113,8 @@ Script tạo một EXE tại `target/release/online-installer/`. EXE nhúng help
 tiếp tục tải và xác minh SHA-256 cho WebView2 trước khi ứng dụng cần WebView2. Tiến độ hiển thị số byte
 thực nhận, tổng dung lượng, tốc độ, ETA, tệp hiện tại và tiến độ chung; tệp hoàn chỉnh hợp lệ không bị
 tải lại. Thư mục `target/` bị Git bỏ qua; hãy tải EXE lên GitHub Releases thay vì commit vào kho.
+Sau khi đã tải lên hoặc sao chép cả EXE lẫn `release-checksums.json` ra ngoài `target/`, có thể chạy
+`cargo clean` an toàn mà không ảnh hưởng mã nguồn hay dữ liệu người dùng của ứng dụng.
 
 Cache cài Runtime nằm tại
 `%LOCALAPPDATA%\io.github.safeduplicate.finder\installer-cache`. Khi gỡ cài đặt rõ ràng từ shortcut
@@ -121,7 +124,7 @@ giữ lại để tránh làm mất bản duy nhất còn lại.
 
 ## Kiểm thử
 
-Mốc hiện tại đạt **118 kiểm thử Rust** và **15 kiểm thử frontend**.
+Mốc hiện tại đạt **120 kiểm thử Rust** và **15 kiểm thử frontend**.
 
 ```powershell
 cargo fmt --all -- --check

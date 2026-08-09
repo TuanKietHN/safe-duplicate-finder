@@ -8,7 +8,7 @@ license.workspace = true
 [dependencies]
 chrono.workspace = true
 crossbeam-channel.workspace = true
-dedupe-core = { version = "0.2.0", path = "../dedupe-core" }
+dedupe-core = { version = "0.2.1", path = "../dedupe-core" }
 hex.workspace = true
 parking_lot.workspace = true
 rusqlite.workspace = true
@@ -19,8 +19,8 @@ tracing.workspace = true
 uuid.workspace = true
 
 [dev-dependencies]
-dedupe-platform = { version = "0.2.0", path = "../dedupe-platform" }
-dedupe-testkit = { version = "0.2.0", path = "../dedupe-testkit" }
+dedupe-platform = { version = "0.2.1", path = "../dedupe-platform" }
+dedupe-testkit = { version = "0.2.1", path = "../dedupe-testkit" }
 tempfile.workspace = true
 
 [lints]

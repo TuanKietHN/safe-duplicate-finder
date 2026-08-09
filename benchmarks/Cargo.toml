@@ -18,8 +18,8 @@ path = "src/main.rs"
 anyhow.workspace = true
 chrono.workspace = true
 clap.workspace = true
-dedupe-core = { version = "0.2.0", path = "../crates/dedupe-core" }
-dedupe-platform = { version = "0.2.0", path = "../crates/dedupe-platform" }
+dedupe-core = { version = "0.2.1", path = "../crates/dedupe-core" }
+dedupe-platform = { version = "0.2.1", path = "../crates/dedupe-platform" }
 serde.workspace = true
 serde_json.workspace = true
 walkdir.workspace = true

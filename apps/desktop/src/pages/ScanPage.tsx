@@ -17,6 +17,7 @@ export function ScanPage({ projectId, sessionId, onProjectChange, onSession, onR
   const [acknowledged, setAcknowledged] = useState(false);
   const [allFiles, setAllFiles] = useState(false);
   const [status, setStatus] = useState<ScanSession | null>(null);
+  const [currentTimestamp, setCurrentTimestamp] = useState<number | null>(null);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -33,6 +34,7 @@ export function ScanPage({ projectId, sessionId, onProjectChange, onSession, onR
   useEffect(() => {
     if (!sessionId || isFinalScanState(status?.state ?? "")) return;
     const eventTimer = window.setInterval(() => {
+      setCurrentTimestamp(Date.now());
       void backend
         .nextScanEvent(sessionId)
         .then((event) => {
@@ -91,7 +93,9 @@ export function ScanPage({ projectId, sessionId, onProjectChange, onSession, onR
     ? Math.min(100, Math.round((status.processed_files / status.discovered_files) * 100))
     : 0;
   const startedAt = status?.started_at ? Date.parse(status.started_at) : Number.NaN;
-  const endedAt = status?.finished_at ? Date.parse(status.finished_at) : Date.now();
+  const endedAt = status?.finished_at
+    ? Date.parse(status.finished_at)
+    : (currentTimestamp ?? startedAt);
   const elapsedSeconds = Number.isFinite(startedAt)
     ? Math.max(0, Math.round((endedAt - startedAt) / 1000))
     : 0;

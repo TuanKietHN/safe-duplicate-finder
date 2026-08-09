@@ -7,7 +7,7 @@ license.workspace = true
 publish = false
 
 [dependencies]
-dedupe-core = { version = "0.2.0", path = "../dedupe-core" }
+dedupe-core = { version = "0.2.1", path = "../dedupe-core" }
 tempfile.workspace = true
 uuid.workspace = true
 

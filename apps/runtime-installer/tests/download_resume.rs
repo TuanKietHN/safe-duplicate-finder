@@ -21,7 +21,7 @@ fn artifact(url: String, bytes: &[u8]) -> RuntimeArtifact {
         architecture: "x64".into(),
         url,
         size_bytes: u64::try_from(bytes.len()).expect("fixture length"),
-        sha256: format!("{:X}", Sha256::digest(bytes)),
+        sha256: hex::encode_upper(Sha256::digest(bytes)),
         cache_file_name: "fixture-runtime.exe".into(),
         install_args: vec!["/silent".into()],
         detection: DetectionRule::Webview2Registry {

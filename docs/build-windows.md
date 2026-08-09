@@ -5,7 +5,7 @@
 - Windows 10/11 x86_64. WebView2 chỉ cần để chạy app/dev; helper trong bộ cài không phụ thuộc WebView2.
 - Visual Studio 2022 Build Tools: Desktop development with C++ và Windows SDK.
 - Rust stable MSVC 1.97.1 (`rustup toolchain install 1.97.1-x86_64-pc-windows-msvc`).
-- Node.js 24.x và npm 11.x.
+- Node.js 24.18.0 LTS và npm 11.x.
 
 ## Kiểm tra
 
@@ -14,7 +14,7 @@ Mở Developer PowerShell for VS 2022 rồi chạy từ thư mục gốc kho mã
 ```powershell
 cargo fmt --all -- --check
 cargo clippy --workspace --all-targets --all-features -- -D warnings
-cargo test --workspace --all-targets
+cargo test --workspace --all-targets --all-features
 npm --prefix apps/desktop ci
 npm --prefix apps/desktop run lint
 npm --prefix apps/desktop run test
@@ -42,11 +42,15 @@ Script build helper native với CRT tĩnh, sau đó nhúng helper vào một Ta
 lại WebView2. Đầu ra phát hành nằm trong `target/release/online-installer/`, kèm
 `release-checksums.json` cho setup, helper, manifest và app release.
 
+`target/` chỉ là cache và đầu ra build cục bộ, không được đưa vào Git hay bộ cài. Trước khi chạy
+`cargo clean`, hãy tải lên GitHub Releases hoặc sao chép ra ngoài `target/` hai tệp
+`safe-dedupe-setup-<phiên-bản>-x64.exe` và `release-checksums.json`.
+
 Helper chỉ tải artifact Microsoft được ghim trong `installer/runtime-manifest.json`; cache và log cài
 đặt nằm dưới `%LOCALAPPDATA%\io.github.safeduplicate.finder\installer-cache`. Cache hoàn chỉnh phải
 đúng cả kích thước và SHA-256; `.part` hợp lệ được tiếp tục bằng HTTP Range.
 
-Kiểm toán import của `safe-dedupe-desktop.exe` cho bản 0.2.0 chỉ thấy DLL hệ thống Windows/UCRT API
+Kiểm toán import của `safe-dedupe-desktop.exe` cho bản 0.2.1 chỉ thấy DLL hệ thống Windows/UCRT API
 set, không có `VCRUNTIME140.dll` hoặc `MSVCP140.dll`; runtime không thuộc hệ thống duy nhất cần xử lý là
 WebView2. Helper được build với `-C target-feature=+crt-static` để không tạo thêm vòng phụ thuộc VC++
 Redistributable.

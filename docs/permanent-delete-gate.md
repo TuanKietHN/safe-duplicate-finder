@@ -13,7 +13,7 @@ Bất biến đã triển khai:
 - chỉ UUID mục cách ly rõ ràng được vào kiểu miền xóa; kiểu này không có trường đường dẫn gốc/nguồn;
 - mục phải còn được xác minh và hoạt động; chế độ thường yêu cầu `retain_until` đã qua;
 - bước chuẩn bị hiển thị chính xác số lượng/byte, trả token 10 phút và câu chính xác
-  `XÓA VĨNH VIỄN <số_lượng> TỆP ĐÃ CÁCH LY (<số_byte> BYTE) TRONG TRÌNH TÌM TỆP TRÙNG LẶP AN TOÀN 0.2.0`;
+  `XÓA VĨNH VIỄN <số_lượng> TỆP ĐÃ CÁCH LY (<số_byte> BYTE) TRONG TRÌNH TÌM TỆP TRÙNG LẶP AN TOÀN 0.2.1`;
 - chỉ lưu giá trị băm tách miền của token, gắn với UUID mục đã sắp xếp, dự án, danh tính vật lý, kích
   thước, bằng chứng BLAKE3 và SHA-256;
 - mọi mục còn lại được kiểm tra trước danh tính/kích thước/hai băm trước lần xóa mới đầu tiên;

@@ -7,7 +7,7 @@ license.workspace = true
 
 [dependencies]
 csv.workspace = true
-dedupe-core = { version = "0.2.0", path = "../dedupe-core" }
+dedupe-core = { version = "0.2.1", path = "../dedupe-core" }
 html-escape.workspace = true
 hex.workspace = true
 serde.workspace = true

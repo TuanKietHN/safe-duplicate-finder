@@ -15,7 +15,7 @@ use crate::{
 };
 
 /// Release-specific phrase suffix. Changing this intentionally invalidates memorized confirmations.
-pub const CONFIRMATION_RELEASE: &str = "TRÌNH TÌM TỆP TRÙNG LẶP AN TOÀN 0.2.0";
+pub const CONFIRMATION_RELEASE: &str = "TRÌNH TÌM TỆP TRÙNG LẶP AN TOÀN 0.2.1";
 
 /// Default lifetime of a newly prepared authorization challenge.
 pub const DEFAULT_TOKEN_TTL_MINUTES: i64 = 10;

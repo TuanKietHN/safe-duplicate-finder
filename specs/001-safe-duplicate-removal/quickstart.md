@@ -84,7 +84,7 @@ Script thực hiện theo thứ tự có kiểm tra:
 ```powershell
 cargo test -p safe-dedupe-runtime-installer
 .\installer\windows\verify-installer.ps1 -InstallerPath `
-  .\target\release\online-installer\safe-dedupe-setup-0.2.0-x64.exe
+  .\target\release\online-installer\safe-dedupe-setup-0.2.1-x64.exe
 ```
 
 Các fixture phải chứng minh: tải mới, resume 206, server bỏ qua Range trả 200, sai độ dài, sai SHA-256,

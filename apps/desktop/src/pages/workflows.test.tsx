@@ -118,7 +118,7 @@ beforeEach(() => {
     token: "one-time-token",
     mode: "retention_expired",
     confirmation_phrase:
-      "XÓA VĨNH VIỄN 1 TỆP ĐÃ CÁCH LY (12 BYTE) TRONG TRÌNH TÌM TỆP TRÙNG LẶP AN TOÀN 0.2.0",
+      "XÓA VĨNH VIỄN 1 TỆP ĐÃ CÁCH LY (12 BYTE) TRONG TRÌNH TÌM TỆP TRÙNG LẶP AN TOÀN 0.2.1",
     entry_count: 1,
     total_bytes: 12,
     expires_at: "2099-01-01T00:00:00Z",
@@ -384,7 +384,7 @@ describe("desktop workflows", () => {
     expect(mocks.executePermanentDelete).toHaveBeenCalledWith(
       "delete-batch-1",
       "one-time-token",
-      "XÓA VĨNH VIỄN 1 TỆP ĐÃ CÁCH LY (12 BYTE) TRONG TRÌNH TÌM TỆP TRÙNG LẶP AN TOÀN 0.2.0",
+      "XÓA VĨNH VIỄN 1 TỆP ĐÃ CÁCH LY (12 BYTE) TRONG TRÌNH TÌM TỆP TRÙNG LẶP AN TOÀN 0.2.1",
     );
   });
 
@@ -407,7 +407,7 @@ describe("desktop workflows", () => {
       token: "immediate-token",
       mode: "immediate",
       confirmation_phrase:
-        "XÓA NGAY VĨNH VIỄN 1 TỆP ĐÃ CÁCH LY (4096 BYTE) TRONG TRÌNH TÌM TỆP TRÙNG LẶP AN TOÀN 0.2.0",
+        "XÓA NGAY VĨNH VIỄN 1 TỆP ĐÃ CÁCH LY (4096 BYTE) TRONG TRÌNH TÌM TỆP TRÙNG LẶP AN TOÀN 0.2.1",
       entry_count: 1,
       total_bytes: 4096,
       expires_at: "2099-01-01T00:10:00Z",
