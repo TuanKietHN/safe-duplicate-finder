@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Trình tìm tệp trùng lặp an toàn">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4779df"/>
+      <stop offset="1" stop-color="#173160"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="224" fill="url(#bg)"/>
+  <path d="M512 150 790 254v214c0 185-113 326-278 406-165-80-278-221-278-406V254L512 150Z" fill="#fff" opacity=".16"/>
+  <rect x="300" y="316" width="304" height="374" rx="54" fill="#dce9ff"/>
+  <rect x="420" y="250" width="304" height="374" rx="54" fill="#fff"/>
+  <path d="m478 455 65 66 130-142" fill="none" stroke="#237b5a" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="474" y="558" width="196" height="30" rx="15" fill="#9db3d5"/>
+</svg>

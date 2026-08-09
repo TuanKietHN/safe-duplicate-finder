@@ -1,0 +1,40 @@
+[package]
+name = "safe-dedupe-benchmarks"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish = false
+
+[[bin]]
+name = "generate-benchmark"
+path = "src/generate.rs"
+
+[[bin]]
+name = "run-benchmark"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+chrono.workspace = true
+clap.workspace = true
+dedupe-core = { version = "0.2.0", path = "../crates/dedupe-core" }
+dedupe-platform = { version = "0.2.0", path = "../crates/dedupe-platform" }
+serde.workspace = true
+serde_json.workspace = true
+walkdir.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+windows-sys.workspace = true
+
+[lints.rust]
+unsafe_code = "allow"
+missing_docs = "warn"
+
+[lints.clippy]
+all = "deny"
+pedantic = "warn"
+undocumented_unsafe_blocks = "deny"
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"

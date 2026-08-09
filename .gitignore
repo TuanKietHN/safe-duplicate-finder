@@ -1,0 +1,101 @@
+# Rust / Cargo
+/target/
+**/target/
+*.pdb
+*.ilk
+*.exp
+*.dSYM/
+
+# Node.js / frontend
+**/node_modules/
+**/dist/
+**/build/
+**/coverage/
+**/.vite/
+**/.turbo/
+**/.cache/
+**/.parcel-cache/
+*.tsbuildinfo
+.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Kết quả kiểm thử và benchmark sinh tự động
+/benchmarks/generated/
+**/test-results/
+**/playwright-report/
+**/.nyc_output/
+lcov.info
+
+# Dữ liệu runtime của ứng dụng
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite-journal
+*.jsonl
+*.journal
+*.backup
+*.bak
+.safe-duplicate-finder-quarantine/
+
+# Artifact cục bộ: chỉ giữ tài liệu mô tả bộ cài
+/artifacts/*
+!/artifacts/windows/
+/artifacts/windows/*
+!/artifacts/windows/README.md
+
+# Gói và tệp nhị phân Windows/Tauri
+*.exe
+*.msi
+*.msix
+*.appx
+*.appxbundle
+*.dll
+
+# Biến môi trường, khóa và chứng thư ký mã riêng tư
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Cấu hình công cụ chỉ dành cho máy cá nhân
+/.codex/
+/.claude/settings.local.json
+/.history/
+/.fleet/
+/.idea/
+/.vs/
+/.vscode/
+*.code-workspace
+
+# Tệp tạm và log
+*.log
+*.tmp
+*.temp
+*.part
+*.swp
+*.swo
+*~
+
+# Hệ điều hành
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+System Volume Information/
+
+# Chủ đích được commit: Cargo.lock, package-lock.json, .cargo/,
+# .github/, .specify/ và .agents/skills/.

@@ -1,0 +1,27 @@
+[package]
+name = "dedupe-store"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+chrono.workspace = true
+crossbeam-channel.workspace = true
+dedupe-core = { version = "0.2.0", path = "../dedupe-core" }
+hex.workspace = true
+parking_lot.workspace = true
+rusqlite.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+uuid.workspace = true
+
+[dev-dependencies]
+dedupe-platform = { version = "0.2.0", path = "../dedupe-platform" }
+dedupe-testkit = { version = "0.2.0", path = "../dedupe-testkit" }
+tempfile.workspace = true
+
+[lints]
+workspace = true

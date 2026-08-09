@@ -1,0 +1,12 @@
+.git/
+.agents/
+.specify/
+target/
+node_modules/
+dist/
+coverage/
+*.log
+.env*
+docs/diagrams/*.png
+artifacts/
+benchmarks/generated/

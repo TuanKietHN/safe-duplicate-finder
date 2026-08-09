@@ -1,0 +1,46 @@
+[package]
+name = "safe-dedupe-runtime-installer"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+build = "build.rs"
+description = "Native verified runtime bootstrapper for Safe Duplicate Finder"
+
+[lib]
+name = "safe_dedupe_runtime_installer"
+path = "src/lib.rs"
+
+[[bin]]
+name = "safe-dedupe-runtime-installer"
+path = "src/main.rs"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+thiserror.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = [
+    "Win32_Foundation",
+    "Win32_Networking_WinHttp",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Registry",
+    "Win32_System_Threading",
+    "Win32_UI_Controls",
+    "Win32_UI_HiDpi",
+    "Win32_UI_WindowsAndMessaging",
+] }
+
+[dev-dependencies]
+tempfile.workspace = true
+
+[target.'cfg(windows)'.build-dependencies]
+tauri-winres = "0.3.6"
+
+[package.metadata.tauri-winres]
+FileDescription = "Trình cài đặt Runtime - Trình tìm tệp trùng lặp an toàn"
+ProductName = "Trình tìm tệp trùng lặp an toàn"
+OriginalFilename = "safe-dedupe-runtime-installer.exe"

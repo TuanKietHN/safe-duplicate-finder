@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Trình tìm tệp trùng lặp an toàn",
+  "version": "0.2.0",
+  "identifier": "io.github.safeduplicate.finder",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Trình tìm tệp trùng lặp an toàn",
+        "width": 1280,
+        "height": 820,
+        "minWidth": 980,
+        "minHeight": 680,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' customprotocol: asset:; connect-src ipc: http://ipc.localhost; img-src 'self' asset: http://asset.localhost data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "resources": {
+      "../../../target/release/safe-dedupe-runtime-installer.exe": "resources/safe-dedupe-runtime-installer.exe"
+    },
+    "shortDescription": "Trình quản lý tệp trùng lặp ưu tiên an toàn",
+    "longDescription": "Tìm các tài liệu trùng khớp từng byte và chuyển những bản sao đã xem xét vào vùng cách ly có thể khôi phục và được xác minh.",
+    "windows": {
+      "allowDowngrades": false,
+      "webviewInstallMode": {
+        "type": "skip"
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": ["Vietnamese"],
+        "compression": "lzma",
+        "startMenuFolder": "Trình tìm tệp trùng lặp an toàn",
+        "installerHooks": "./windows/hooks.nsh"
+      }
+    }
+  }
+}

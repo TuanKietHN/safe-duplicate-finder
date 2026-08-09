@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "release_version": "0.2.0",
+  "architecture": "x86_64-pc-windows-msvc",
+  "artifacts": [
+    {
+      "id": "webview2-evergreen-x64",
+      "display_name": "Microsoft Edge WebView2 Evergreen Runtime (x64)",
+      "architecture": "x64",
+      "url": "https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/669f1728-b3bd-4762-97f8-281a7e067ebe/MicrosoftEdgeWebView2RuntimeInstallerX64.exe",
+      "size_bytes": 209605840,
+      "sha256": "4AC55375E52435B5AAF2E2E76D81F539A2602CEA38D4B647F5FAADE467C6E078",
+      "cache_file_name": "webview2-evergreen-x64-4ac55375e52435b5.exe",
+      "install_args": ["/silent", "/install"],
+      "detection": {
+        "kind": "webview2_registry",
+        "app_guid": "{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}"
+      },
+      "max_retries": 3
+    }
+  ]
+}
+
